@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "styles.css">
+</head>
+<body>
+    <button id="newGridButton">Let's go!</button>
+    <div class ="container"></div>
+    <script>
+        // setup grid
+        const container = document.querySelector(".container");
+
+        function makeGrid(size) {
+            container.innerHTML = '';
+
+            container.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+            container.style.gridTemplateRows = `repeat(${size}, 1fr)`
+
+            for (let i = 0; i < size * size; i++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                cell.style.border = "1px solid black";
+                container.appendChild(cell)
+            }
+        }
+
+        const button = document.getElementById("newGridButton");
+
+        button.addEventListener("click", () => {
+            let size = prompt("Enter a number of boxes per side of your Etch-a-Sketch");
+            size = parseInt(size);
+
+            if (size && size > 0 && size <= 100) {
+                makeGrid(size);
+            } else {
+                alert("Please enter a number below 100");
+            }
+        })
+        makeGrid();
+    </script>
+</body>
+</html>
